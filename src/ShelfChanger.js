@@ -10,7 +10,6 @@ class ShelfChanger extends Component {
 
   render() {
     const { book, addBooks } = this.props
-
     return (
       <div className="book-shelf-changer">
         <select  onChange={(event) => addBooks(book, event.target.value)}

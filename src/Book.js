@@ -13,7 +13,6 @@ class Book extends Component {
     const { book, addBooks} = this.props
 
     let img = book.hasOwnProperty("imageLinks")? book.imageLinks.thumbnail : "";
-
     return (
           <li>
             <div aria-label="book" className="book">

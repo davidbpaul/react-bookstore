@@ -26,13 +26,22 @@ class Search extends React.Component {
       this.setState({newBooks: [], searchErr: false })
     } else{
       BooksAPI.search(event.target.value, 20).then((books) => {
-        books.length > 0 ?  this.setState({newBooks: books, searchErr: false }) : this.setState({ newBooks: [], searchErr: true })
+        books.length > 0 ?  this.setState({searchErr: false }) : this.setState({ newBooks: [], searchErr: true })
+        let arr = books.map(item =>{
+          for(let i = 0; i < this.props.books.length; i++){
+            if(item.id === this.props.books[i].id){
+              item.shelf = this.props.books[i].shelf;
+            }
+          }
+          return item;
+        })
+        this.setState({newBooks: arr})
       })
     }
   }
   render() {
     const { query, newBooks, searchErr } = this.state
-    const { addBooks } = this.props
+    const { addBooks, books } = this.props
     return (
       <div className="search-books">
         <div className="search-books-bar">
